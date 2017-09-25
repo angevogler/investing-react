@@ -30,6 +30,8 @@ export function reducer(state, action) {
           doubloons: state.doubloons - state.exchange,
           arrrrcoins: state.arrrrcoins + 1,
           exchange: state.exchange,
+          canBuy: state.canBuy,
+          canSell: state.canSell,
         };
     }
 
@@ -38,17 +40,32 @@ export function reducer(state, action) {
         return {
           doubloons: state.doubloons + state.exchange,
           arrrrcoins: state.arrrrcoins - 1,
-          exchange: state.exchange
+          exchange: state.exchange,
+          canBuy: state.canBuy,
+          canSell: state.canSell,
         };
     }
 
     // generate random exchange rate
     if (action.type === 'RANDOMIZE_EXCHANGE') {
       let exchange = Math.random() * (10 - 0) + 0;
+      let canBuy;
+      let canSell;
+
+      if (exchange < state.doubloons) {
+        canBuy = true;
+      }
+
+      if (exchange < state.arrrrcoins) {
+        canSell = true;
+      }
+      
       return {
         doubloons: state.doubloons,
         arrrrcoins: state.arrrrcoins,
         exchange: exchange,
+        canBuy: canBuy,
+        canSell: state.canSell,
       }
     }
 
@@ -61,5 +78,7 @@ export const store = createStore(reducer, {
     doubloons: 100,
     arrrrcoins: 0,
     exchange: 4,
+    canBuy: false,
+    canSell: false,
 },
 );

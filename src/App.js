@@ -15,6 +15,8 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.canBuy);
+    console.log(this.props.canSell);
     return (
       <div className="App">
         <div className="App-header">
@@ -35,8 +37,8 @@ class App extends Component {
           <p>{this.props.exchange}</p>
         </div>
         <div>
-          <button onClick={ () => this.props.buy() }>Buy Arrrrcoins</button>
-          <button onClick={ () => this.props.sell() }>Sell Arrrrcoins</button>
+          <button onClick={ () => this.props.buy() } disabled={!this.props.canBuy}>Buy Arrrrcoins</button>
+          <button onClick={ () => this.props.sell() } disabled={!this.props.canSell}>Sell Arrrrcoins</button>
         </div>
       </div>
     );
@@ -48,7 +50,9 @@ function mapStateToProps(state) {
   return {
     doubloons: state.doubloons,
     arrrrcoins: state.arrrrcoins,
-    exchange: state.exchange
+    exchange: state.exchange,
+    canBuy: state.canBuy,
+    canSell: state.canSell,
   }
 }
 
