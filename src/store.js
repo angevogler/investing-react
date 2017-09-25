@@ -23,8 +23,6 @@ export const exchangeAction = {
 //  action = the modification we want to apply
 // Goal: return a new state
 export function reducer(state, action) {
-    // You should ==> ALWAYS <== create a new state
-    // object, not modify the existing one.
 
     // buy arrrrcoins
     if (action.type === 'BUY' && state.doubloons > state.exchange) {
@@ -58,8 +56,7 @@ export function reducer(state, action) {
     return state;
 }
 
-// Weave the reducer function and the initial state
-// together into the actual 'store'
+// put together reducer and initial state
 export const store = createStore(reducer, {
     doubloons: 100,
     arrrrcoins: 0,

@@ -4,7 +4,6 @@ import './App.css';
 
 import { buyAction, sellAction, exchangeAction, reducer } from './store';
 
-// Black magic, come forth
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -12,7 +11,7 @@ class App extends Component {
     super(props);
 
     setInterval(this.props.randomize, 1000)
-    
+
   }
 
   render() {
@@ -44,9 +43,7 @@ class App extends Component {
   }
 }
 
-// Two things that need to be connected:
-//    1. How to read from the state (get info out)
-//    2. How to send actions to the state (put info in)
+// read from the state
 function mapStateToProps(state) {
   return {
     doubloons: state.doubloons,
@@ -55,8 +52,7 @@ function mapStateToProps(state) {
   }
 }
 
-// 'dispatch' is a built-in redux function that sends the
-// specified action to the reducer function
+// send actions to the state
 function mapActionsToProps(dispatch) {
   return {
     buy: function () {
